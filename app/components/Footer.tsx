@@ -17,17 +17,20 @@ export default function Footer() {
 
   useGSAP(
     () => {
-      gsap.from(".footer-content", {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      gsap.fromTo(".footer-content", 
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     },
     { scope: footerRef }
   );

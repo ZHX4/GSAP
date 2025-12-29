@@ -24,25 +24,34 @@ export default function Navigation() {
   const navRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Animate nav items on load
-    gsap.from(".nav-item", {
-      opacity: 0,
-      y: -20,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: "power3.out",
-      delay: 0.5,
-    });
+    // Use fromTo to explicitly set both start and end states
+    // This prevents elements from disappearing after React re-renders
+    gsap.fromTo(".nav-item", 
+      { opacity: 0, y: -20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+        delay: 0.5,
+        clearProps: 'all' // Remove inline styles after animation completes
+      }
+    );
 
     // Animate logo
-    gsap.from(".nav-logo", {
-      opacity: 0,
-      x: -30,
-      duration: 0.8,
-      ease: "power3.out",
-      delay: 0.3,
-    });
-  }, []);
+    gsap.fromTo(".nav-logo", 
+      { opacity: 0, x: -30 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.3,
+        clearProps: 'all'
+      }
+    );
+  }, { scope: navRef });
 
   return (
     <nav ref={navRef} className="nav">

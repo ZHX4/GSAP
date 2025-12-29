@@ -38,6 +38,7 @@
  * Happy animating! 🚀
  */
 
+import Link from "next/link";
 import Hero from "./components/Hero";
 import Navigation from "./components/Navigation";
 import TextReveal from "./components/TextReveal";
@@ -47,10 +48,19 @@ import { MagneticButtonDemo } from "./components/MagneticButton";
 import TimelineDemo from "./components/TimelineDemo";
 import ScrollProgress, { ScrollProgressDemo } from "./components/ScrollProgress";
 import Footer from "./components/Footer";
+import Sidebar from "./components/Sidebar";
 
 export default function Home() {
   return (
     <main className="relative overflow-hidden">
+      {/* ========================================
+          SIDEBAR NAVIGATION
+          ========================================
+          Persistent sidebar for navigating between
+          tutorial lessons/pages.
+      */}
+      <Sidebar />
+
       {/* ========================================
           SCROLL PROGRESS BAR
           ========================================
@@ -133,6 +143,53 @@ export default function Home() {
       */}
       <section id="progress">
         <ScrollProgressDemo />
+      </section>
+
+      {/* ========================================
+          EXPLORE MORE LESSONS
+          ========================================
+          Links to detailed lesson pages.
+      */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-4">
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              Explore In-Depth Lessons
+            </span>
+          </h2>
+          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+            Dive deeper into specific GSAP topics with our comprehensive tutorial pages.
+          </p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { href: '/basics', title: 'GSAP Basics', desc: 'Tweens, timelines, easing, and core concepts', color: 'from-purple-500 to-purple-600' },
+              { href: '/scroll-animations', title: 'ScrollTrigger', desc: 'Scroll-linked animations, scrub, pin, and parallax', color: 'from-cyan-500 to-cyan-600' },
+              { href: '/text-animations', title: 'Text Animations', desc: 'Character reveals, typewriter, scramble effects', color: 'from-pink-500 to-pink-600' },
+              { href: '/svg-animations', title: 'SVG Animations', desc: 'Path drawing, morphing, charts, and icons', color: 'from-green-500 to-green-600' },
+              { href: '/interactive', title: 'Interactive Effects', desc: 'Magnetic buttons, cursors, 3D cards, drag', color: 'from-yellow-500 to-yellow-600' },
+              { href: '/advanced', title: 'Advanced Techniques', desc: 'FLIP, performance, accessibility, custom easings', color: 'from-red-500 to-red-600' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group relative p-6 rounded-2xl bg-gray-800/50 border border-gray-700
+                           hover:border-gray-600 transition-all hover:-translate-y-1"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 
+                                 group-hover:opacity-10 rounded-2xl transition-opacity`} />
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm">{item.desc}</p>
+                <span className="absolute bottom-6 right-6 text-gray-600 group-hover:text-white 
+                                 group-hover:translate-x-1 transition-all">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ========================================

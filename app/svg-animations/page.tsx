@@ -143,6 +143,8 @@ function AnimatedIcon() {
     const check = svgRef.current?.querySelector('.check');
     const sparkles = svgRef.current?.querySelectorAll('.sparkle');
 
+    if (!circle || !check || !sparkles) return;
+
     const tl = gsap.timeline({
       onComplete: () => setIsAnimating(false),
     });
@@ -538,10 +540,13 @@ function HoverSVG() {
       ease: 'elastic.out(1, 0.5)',
     });
     
-    gsap.to(starRef.current?.querySelector('.star-fill'), {
-      fill: '#fbbf24',
-      duration: 0.3,
-    });
+    const starFill = starRef.current?.querySelector('.star-fill');
+    if (starFill) {
+      gsap.to(starFill, {
+        fill: '#fbbf24',
+        duration: 0.3,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
@@ -552,10 +557,13 @@ function HoverSVG() {
       ease: 'power2.out',
     });
     
-    gsap.to(starRef.current?.querySelector('.star-fill'), {
-      fill: 'transparent',
-      duration: 0.3,
-    });
+    const starFill = starRef.current?.querySelector('.star-fill');
+    if (starFill) {
+      gsap.to(starFill, {
+        fill: 'transparent',
+        duration: 0.3,
+      });
+    }
   };
 
   return (

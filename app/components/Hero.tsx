@@ -70,6 +70,7 @@ export default function Hero() {
             duration: 0.8,
             stagger: 0.03, // Each letter starts 0.03s after the previous
             ease: "back.out(1.7)", // Slight overshoot for character
+            clearProps: 'transform',
           },
           0.3 // Start at 0.3 seconds into the timeline
         );
@@ -78,12 +79,17 @@ export default function Hero() {
       // --------------------------------------------------------
       // STEP 2: Animate the subtitle
       // --------------------------------------------------------
-      tl.from(
+      tl.fromTo(
         subtitleRef.current,
         {
           opacity: 0,
           y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
           duration: 1,
+          clearProps: 'all',
         },
         "-=0.5" // Start 0.5s before the previous animation ends (overlap)
       );
@@ -91,12 +97,17 @@ export default function Hero() {
       // --------------------------------------------------------
       // STEP 3: Animate the CTA buttons
       // --------------------------------------------------------
-      tl.from(
+      tl.fromTo(
         ctaRef.current,
         {
           opacity: 0,
           y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
           duration: 0.8,
+          clearProps: 'all',
         },
         "-=0.6"
       );

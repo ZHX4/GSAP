@@ -46,12 +46,15 @@ function MagneticButton() {
       ease: 'elastic.out(1, 0.3)',
     });
 
-    gsap.to(buttonRef.current?.querySelector('span'), {
-      x: 0,
-      y: 0,
-      duration: 0.5,
-      ease: 'elastic.out(1, 0.3)',
-    });
+    const span = buttonRef.current?.querySelector('span');
+    if (span) {
+      gsap.to(span, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.3)',
+      });
+    }
   };
 
   return (

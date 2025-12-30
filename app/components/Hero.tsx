@@ -47,38 +47,20 @@ export default function Hero() {
       });
 
       // --------------------------------------------------------
-      // STEP 1: Animate the title letters
+      // STEP 1: Animate the title
       // --------------------------------------------------------
-      // Split the title text into individual spans for animation
-      if (titleRef.current) {
-        const text = titleRef.current.innerText;
-        titleRef.current.innerHTML = text
-          .split("")
-          .map((char) =>
-            char === " "
-              ? "<span class='inline-block'>&nbsp;</span>"
-              : `<span class='inline-block'>${char}</span>`
-          )
-          .join("");
-
-        const spans = titleRef.current.querySelectorAll("span");
-        
-        // Set initial state with GSAP (not CSS classes)
-        gsap.set(spans, { opacity: 0, y: 100 });
-
-        // Animate each letter with a stagger effect
-        tl.to(
-          spans,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.03, // Each letter starts 0.03s after the previous
-            ease: "back.out(1.7)", // Slight overshoot for character
-          },
-          0.3 // Start at 0.3 seconds into the timeline
-        );
-      }
+      tl.fromTo(
+        titleRef.current,
+        { opacity: 0, y: 50, scale: 0.9 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.7)",
+        },
+        0.2
+      );
 
       // --------------------------------------------------------
       // STEP 2: Animate the subtitle

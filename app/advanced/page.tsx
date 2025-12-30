@@ -398,12 +398,15 @@ function PerformanceDemo() {
 
   const stopAnimation = () => {
     animationRef.current?.kill();
-    gsap.to(containerRef.current?.querySelectorAll('.perf-box'), {
-      x: 0,
-      y: 0,
-      rotation: 0,
-      duration: 0.3,
-    });
+    const boxes = containerRef.current?.querySelectorAll('.perf-box');
+    if (boxes) {
+      gsap.to(boxes, {
+        x: 0,
+        y: 0,
+        rotation: 0,
+        duration: 0.3,
+      });
+    }
   };
 
   return (

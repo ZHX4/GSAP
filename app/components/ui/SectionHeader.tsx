@@ -21,6 +21,7 @@ export default function SectionHeader({
 
   useGSAP(() => {
     const elements = containerRef.current?.querySelectorAll('.animate-in');
+    if (!elements) return;
     
     gsap.fromTo(elements, 
       { y: 30, opacity: 0 },

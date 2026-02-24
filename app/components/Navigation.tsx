@@ -77,7 +77,7 @@ export default function Navigation() {
 
           {/* GitHub Link */}
           <a
-            href="https://github.com"
+            href="https://github.com/ZHX4/GSAP"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-item btn btn-secondary py-2 px-4 text-sm"

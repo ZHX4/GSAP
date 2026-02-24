@@ -52,7 +52,7 @@ import Sidebar from "./components/Sidebar";
 
 export default function Home() {
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-hidden lg:ml-64">
       {/* ========================================
           SIDEBAR NAVIGATION
           ========================================
